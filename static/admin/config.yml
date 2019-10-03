@@ -27,6 +27,12 @@ collections:
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "submit-personal-story-page"}
           - {label: "Subtitle", name: "body", widget: "markdown"}
+      - file: "src/pages/contact/index.md"
+        label: "Contact Page"
+        name: "contact"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "contact-page"}
+          - {label: "Subtitle", name: "body", widget: "markdown"}
   - name: "stories"
     label: "Stories" # Used in the UI
     preview_path: "{{slug}}"
@@ -52,5 +58,16 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", options: ['toolkit', 'videos', 'endorsers'], widget: "select", hint: "For toolkit resources, use the file upload to upload a pdf. For endorsers or videos, use the URL field to add the link"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Url", name: "url", required: false, widget: "string", hint: "If you're using a youtube link, make sure to use the embed link. It should start with youtube.com/embed/ and then have some random letters after it"}
+      - {label: "Url", name: "url", required: false, widget: "string", hint: "If you're using a youtube link, make sure to use the embed link. It should start with youtube.com/embed/ and then have some random letters after it",   pattern: ["^(https|http):\/\/", "Must begin with either http:// or https:// remember to copy and paste the full url!"]}
       - {label: "Resource", name: "resource", required: false, widget: "file", hint: "All resources need to be pdfs"}
+  - name: "media coverage"
+    label: "Media Coverage" # Used in the UI
+    preview_path: "{{slug}}"
+    folder: "src/pages/news" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "news"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Url", name: "url", widget: "string",  pattern: ["^(https|http):\/\/", "Must begin with either http:// or https:// remember to copy and paste the full url!"]}
